@@ -5,10 +5,10 @@ import os
 
 from aiogram import Bot, Dispatcher, types
 
-TOKEN = os.getenv('TOKEN')
+TOKEN = "7129515674:AAFNBs77HfuZiTKqW6AQhEG2w00_8BWybgE"
 
 WEBHOOK_PATH = f"/bot/{TOKEN}"
-RENDER_WEB_SERVICE_NAME = "<YOUR_RENDER_WEB_SERVICE_NAME>"
+RENDER_WEB_SERVICE_NAME = "maalikatelbot"
 WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + ".onrender.com" + WEBHOOK_PATH
 
 logging.basicConfig(filemode='a', level=logging.INFO)
