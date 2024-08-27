@@ -9,7 +9,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
 
 
-TOKEN = "7129515674:AAHjbQT8kKL0W5ik-7TP7BNWcJegOQ-WfP4"
+TOKEN = "7129515674:AAEueiEQwLKF-GAIEmG0MyCBXshmhz-umMY"
 
 WEBHOOK_PATH = f"/bot/{TOKEN}"
 RENDER_WEB_SERVICE_NAME = "maalikatelbot"
