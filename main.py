@@ -6,6 +6,8 @@ from contextlib import asynccontextmanager
 
 
 from aiogram import Bot, Dispatcher, types
+from aiogram.filters import Command
+
 
 TOKEN = "7129515674:AAHjbQT8kKL0W5ik-7TP7BNWcJegOQ-WfP4"
 
@@ -16,7 +18,7 @@ WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + ".onrender.com" + WEBHOOK_P
 logging.basicConfig(filemode='a', level=logging.INFO)
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot=bot)
-
+# dp.start_polling()
 app = FastAPI()
 
 
@@ -35,14 +37,14 @@ async def lifespan(app: FastAPI):
     await bot.get_session().close()
 
 
-@dp.message_handler(commands=['start'])
+@dp.message(Command=['start'])
 async def start_handler(message: types.Message):
     user_id = message.from_user.id
     user_full_name = message.from_user.full_name
     logging.info(f'Start: {user_id} {user_full_name} {time.asctime()}. Message: {message}')
     await message.reply(f"Hello, {user_full_name}!")
 
-@dp.message_handler()
+@dp.message()
 async def main_handler(message: types.Message):
     try:
         user_id = message.from_user.id
