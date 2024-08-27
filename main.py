@@ -25,8 +25,9 @@ app = FastAPI()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup code
-    webhook_info = await bot.get_webhook_info()
     print("-------------------------------Info------------------------------")
+    webhook_info = await bot.get_webhook_info()
+
     print(webhook_info)
     print("-------------------------------Info------------------------------")
     if webhook_info.url != WEBHOOK_URL:
