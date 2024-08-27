@@ -11,7 +11,7 @@ from aiogram.filters import CommandStart
 
 TOKEN = "7129515674:AAEueiEQwLKF-GAIEmG0MyCBXshmhz-umMY"
 
-WEBHOOK_PATH = f"/bot/{TOKEN}"
+WEBHOOK_PATH = f"/webhook"
 RENDER_WEB_SERVICE_NAME = "maalikatelbot"
 WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + ".onrender.com" + WEBHOOK_PATH
 
