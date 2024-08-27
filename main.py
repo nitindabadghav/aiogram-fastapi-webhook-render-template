@@ -2,10 +2,12 @@ from fastapi import FastAPI
 import time
 import logging
 import os
+from contextlib import asynccontextmanager
+
 
 from aiogram import Bot, Dispatcher, types
 
-TOKEN = "7129515674:AAFNBs77HfuZiTKqW6AQhEG2w00_8BWybgE"
+TOKEN = "7129515674:AAHjbQT8kKL0W5ik-7TP7BNWcJegOQ-WfP4"
 
 WEBHOOK_PATH = f"/bot/{TOKEN}"
 RENDER_WEB_SERVICE_NAME = "maalikatelbot"
@@ -17,13 +19,21 @@ dp = Dispatcher(bot=bot)
 
 app = FastAPI()
 
-@app.on_event("startup")
-async def on_startup():
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup code
     webhook_info = await bot.get_webhook_info()
     if webhook_info.url != WEBHOOK_URL:
         await bot.set_webhook(
             url=WEBHOOK_URL
         )
+    
+    yield  # This point is where the app runs
+
+    # Shutdown code
+    await bot.get_session().close()
+
 
 @dp.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
@@ -50,9 +60,6 @@ async def bot_webhook(update: dict):
     Bot.set_current(bot)
     await dp.process_update(telegram_update)
 
-@app.on_event("shutdown")
-async def on_shutdown():
-    await bot.get_session().close()
 
 @app.get("/")
 def main_web_handler():
