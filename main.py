@@ -61,8 +61,9 @@ async def main_handler(message: types.Message):
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(update: dict):
     telegram_update = types.Update(**update)
-    Dispatcher.set_current(dp)
-    Bot.set_current(bot)
+    print("-------------------------------Inside webhook Info------------------------------")
+    print(telegram_update)
+    print("-------------------------------Inside webhook Info------------------------------")
     await dp.process_update(telegram_update)
 
 
