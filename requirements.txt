@@ -1,4 +1,9 @@
-fastapi
-aiogram==3.12.0
-gunicorn
-uvicorn
+# fastapi
+# aiogram==3.12.0
+# gunicorn
+# uvicorn
+langchain==0.2.14
+langchain_google_genai==1.0.9
+langchain-community==0.2.12
+faiss-cpu==1.8.0.post1
+loggers==0.1.4
