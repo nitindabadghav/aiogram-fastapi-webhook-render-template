@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 
 
 from aiogram import Bot, Dispatcher, types
-from aiogram.filters import Command
+from aiogram.filters import CommandStart
 
 
 TOKEN = "7129515674:AAHjbQT8kKL0W5ik-7TP7BNWcJegOQ-WfP4"
@@ -37,7 +37,7 @@ async def lifespan(app: FastAPI):
     await bot.get_session().close()
 
 
-@dp.message(Command=['start'])
+@dp.message(CommandStart())
 async def start_handler(message: types.Message):
     user_id = message.from_user.id
     user_full_name = message.from_user.full_name
