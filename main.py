@@ -18,7 +18,7 @@ WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + ".onrender.com" + WEBHOOK_P
 logging.basicConfig(filemode='a', level=logging.INFO)
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot=bot)
-# dp.start_polling()
+dp.start_polling()
 app = FastAPI()
 
 
