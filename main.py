@@ -26,10 +26,10 @@ from langchain_community.vectorstores import FAISS
 TOKEN = "7129515674:AAEueiEQwLKF-GAIEmG0MyCBXshmhz-umMY"
 
 WEBHOOK_PATH = f"/webhook"
-# RENDER_WEB_SERVICE_NAME = "aec9-223-233-84-28.ngrok-free.app"
-RENDER_WEB_SERVICE_NAME = "maalikatelbot"
+RENDER_WEB_SERVICE_NAME = "66da-223-233-82-254.ngrok-free.app"
+# RENDER_WEB_SERVICE_NAME = "maalikatelbot.onrender.com"
 # WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + ".onrender.com" + WEBHOOK_PATH
-WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + ".onrender.com" + WEBHOOK_PATH
+WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + WEBHOOK_PATH
 
 logging.basicConfig(filemode='a', level=logging.INFO)
 
@@ -107,11 +107,16 @@ async def main_handler(message: Message):
 
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(request: Request):
-    print("................................................................in here11111111111111111111111111111111")
-    data = await request.json()
-    chat_id = data['message']['chat']['id']
-    text = data['message']['text']
-    print(f"=============================================== {text}")
-    update = Update(**await request.json())
-    await dp.feed_webhook_update(bot,update=update)
-    return text
+    try:
+        print("................................................................in here11111111111111111111111111111111")
+        data = await request.json()
+        chat_id = data['message']['chat']['id']
+        print(data)
+        text = data['message']['text']
+        print(f"=============================================== {text}")
+        update = Update(**await request.json())
+        await dp.feed_webhook_update(bot,update=update)
+        return text
+    except:
+        print("Something went wrong")
+        return ""
