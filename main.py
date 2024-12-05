@@ -26,8 +26,8 @@ from langchain_community.vectorstores import FAISS
 TOKEN = "7129515674:AAEueiEQwLKF-GAIEmG0MyCBXshmhz-umMY"
 
 WEBHOOK_PATH = f"/webhook"
-RENDER_WEB_SERVICE_NAME = "66da-223-233-82-254.ngrok-free.app"
-# RENDER_WEB_SERVICE_NAME = "maalikatelbot.onrender.com"
+# RENDER_WEB_SERVICE_NAME = "66da-223-233-82-254.ngrok-free.app"
+RENDER_WEB_SERVICE_NAME = "maalikatelbot.onrender.com"
 # WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + ".onrender.com" + WEBHOOK_PATH
 WEBHOOK_URL = "https://" + RENDER_WEB_SERVICE_NAME + WEBHOOK_PATH
 
@@ -45,6 +45,7 @@ llm = ChatGoogleGenerativeAI(
 
 prompt_template = """ You are an expert in Bhavishya Maalika.
   Read the context carefully and Answer the question as detailed as possible from the provided context, make sure to provide all the details\n\n
+  If the output has a  website reference, please display that too.
   Context:\n {context}?\n
   Question: \n{question}\n
 
