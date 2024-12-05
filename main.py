@@ -95,11 +95,15 @@ async def start_handler(message: Message):
 @dp.message()
 async def main_handler(message: Message):
     try:
-        # user_id = message.from_user.id
-        # user_full_name = message.from_user.full_name
-        # logging.info(f'Main: {user_id} {user_full_name} {time.asctime()}. Message: {message}')
+        user_id = message.from_user.id
+        user_full_name = message.from_user.full_name
+        print("========================================================================")
+        logging.info(f'Question asked by: {user_id} | {user_full_name} | {time.asctime()} --->\n Message: {message.text}')
+        print(f'Main: {user_id} {user_full_name} {time.asctime()} --->\n Message: {message.text}')
+        
         question = message.text
         response = get_response(chain, new_db, question)
+        print("========================================================================")
         await message.reply(response)
     except:
         logging.info(f'Main: Error in main_handler')
@@ -108,12 +112,9 @@ async def main_handler(message: Message):
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(request: Request):
     try:
-        print("................................................................in here11111111111111111111111111111111")
         data = await request.json()
         chat_id = data['message']['chat']['id']
-        print(data)
         text = data['message']['text']
-        print(f"=============================================== {text}")
         update = Update(**await request.json())
         await dp.feed_webhook_update(bot,update=update)
         return text
